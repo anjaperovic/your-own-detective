@@ -120,3 +120,52 @@ clj꞉your-own-detective.core꞉> 
 clj꞉your-own-detective.core꞉> 
 (get-evidence-by-suspect "Marc")
 clj꞉your-own-detective.core꞉> 
+(fact  "mata" (+ 1 1) => 2)
+clj꞉your-own-detective.core-test꞉> 
+(get-evidence-by-chapter 3 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-chapter 3 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-chapter 2 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-chapter 2 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-chapter 2 examples)
+clj꞉your-own-detective.core꞉> 
+clj꞉your-own-detective.core-test꞉> 
+values-examples-2
+clj꞉your-own-detective.core꞉> 
+(def values-examples(vals examples))
+clj꞉your-own-detective.core꞉> 
+values-examples
+clj꞉your-own-detective.core꞉> 
+(def values-examples-2(apply concat values-examples))
+clj꞉your-own-detective.core꞉> 
+values-examples-2
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 5 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 5 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 5 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 3 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 1 examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-up-to-chapter 10 examples)
+clj꞉your-own-detective.core꞉> 
+clj꞉your-own-detective.core-test꞉> 
+values-examples
+clj꞉your-own-detective.core꞉> 
+values-examples-vec
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-type :contradiction examples )
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-type :contradiction examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-type :contradiction examples)
+clj꞉your-own-detective.core꞉> 
+(get-evidence-by-type :contradiction examples)
+clj꞉your-own-detective.core꞉> 
+clj꞉your-own-detective.core-test꞉> 

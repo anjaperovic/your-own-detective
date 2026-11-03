@@ -34,26 +34,42 @@
 ;; vadi sve dokaze za odredjeno poglavlje
 (get examples 1)
 (get examples 2)
-(defn get-evidence-by-chapter [n](get examples n))
-(get-evidence-by-chapter 3)
-(get-evidence-by-chapter 2)
+(defn get-evidence-by-chapter [n db](get db n))
+(get-evidence-by-chapter 3 examples)
+(get-evidence-by-chapter 2 examples)
 ;;radi
+
+
+;; vadi sve dokaze do odredjenog poglavlja
+(defn get-evidence-up-to-chapter [n db] (loop [iteration 1 final-evidence []]
+                                          (if (> iteration n)
+                                            final-evidence
+                                            (recur (inc iteration)
+                                                  (into final-evidence (get-evidence-by-chapter iteration db))
+                                                       ))))
+(get-evidence-up-to-chapter 5 examples) 
+(get-evidence-up-to-chapter 3 examples)
+(get-evidence-up-to-chapter 10 examples)
+;;radi
+
 
 
 (filter #(=(:evidence-type %) :contradiction) examples) ;;prazno
 
-(def values-examples(vals examples))
-(filter #(= (:evidence-type %) :contradiction) values-examples)
+(def values-examples-vec(vals examples))
+values-examples-vec
+(filter #(= (:evidence-type %) :contradiction) values-examples-vec)
 ;;nije se uhvatio nijedan
 
-(def values-examples-2(apply concat values-examples))
-values-examples-2
+(def values-examples(apply concat values-examples-vec))
+values-examples
 ;;svi 
-;;vadi sve dokaze za odredjeni tip
-(defn get-evidence-by-type [type]
-  (filter #(= (:evidence-type %) type) values-examples-2)) 
 
-(get-evidence-by-type :contradiction )
+;;vadi sve dokaze za odredjeni tip
+(defn get-evidence-by-type [type db]
+  (filter #(= (:evidence-type %) type) (apply concat (vals db)))) 
+
+(get-evidence-by-type :contradiction examples)
 ;;radi
 
 
