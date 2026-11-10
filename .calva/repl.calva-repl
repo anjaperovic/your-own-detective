@@ -16,156 +16,377 @@
 
 (when-let [requires (resolve 'clojure.main/repl-requires)] (clojure.core/apply clojure.core/require @requires))
 clj꞉your-own-detective.core꞉> 
-(defn -main 
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+(get-evidence-by-chapter 3 examples)
 clj꞉your-own-detective.core꞉> 
-(get examples 1)
-clj꞉your-own-detective.core꞉> 
-(get examples :suspect)
-clj꞉your-own-detective.core꞉> 
-(get examples 1)
+(get-evidence-by-chapter 2 examples)
 clj꞉your-own-detective.core꞉> 
 (when-let [requires (resolve 'clojure.main/repl-requires)] (clojure.core/apply clojure.core/require @requires))
 clj꞉your-own-detective.core꞉> 
-(get examples 1)
-clj꞉your-own-detective.core꞉> 
-(get examples 1)
-clj꞉your-own-detective.core꞉> 
-(get examples :suspect)
-clj꞉your-own-detective.core꞉> 
-(get examples 2)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 3)
-clj꞉your-own-detective.core꞉> 
-(defn get-evidence-by-chapter [n](get examples n))
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 3)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 2)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 3)
-clj꞉your-own-detective.core꞉> 
-(filter #(=(:evidence-type %) "contradiction") examples)
-clj꞉your-own-detective.core꞉> 
-(filter #(=(:evidence-type %) "contradiction") examples)
-clj꞉your-own-detective.core꞉> 
-(vals examples)
-clj꞉your-own-detective.core꞉> 
-(def values-examples(vals examples))
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) "contradiction") values-examples)
-clj꞉your-own-detective.core꞉> 
-(filter #(=(:evidence-type %) :contradiction) examples)
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples)
-clj꞉your-own-detective.core꞉> 
-(get examples 1)
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples)
-clj꞉your-own-detective.core꞉> 
-(def values-examples-2(apply concat(values-examples)))
-clj꞉your-own-detective.core꞉> 
-(def values-examples-2(apply concat values-examples))
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples)
-clj꞉your-own-detective.core꞉> 
-values-examples-2
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples-2)
-clj꞉your-own-detective.core꞉> 
-values-examples-2
-clj꞉your-own-detective.core꞉> 
-(defn -main 
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
-clj꞉your-own-detective.core꞉> 
-(get examples 1)
-clj꞉your-own-detective.core꞉> 
-(defn get-evidence-by-chapter [n](get examples n))
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 3)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 2)
-clj꞉your-own-detective.core꞉> 
-(filter #(=(:evidence-type %) :contradiction) examples)
-clj꞉your-own-detective.core꞉> 
-(def values-examples(vals examples))
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples)
-clj꞉your-own-detective.core꞉> 
-(def values-examples-2(apply concat values-examples))
-clj꞉your-own-detective.core꞉> 
-values-examples-2
-clj꞉your-own-detective.core꞉> 
-(filter #(= (:evidence-type %) :contradiction) values-examples-2)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction )
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction )
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction )
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction )
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction )
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-suspect "Marc")
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-suspect "Marc")
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-suspect "Marc")
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-suspect "Marc")
-clj꞉your-own-detective.core꞉> 
-(fact  "mata" (+ 1 1) => 2)
-clj꞉your-own-detective.core-test꞉> 
-(get-evidence-by-chapter 3 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 3 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 2 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 2 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-chapter 2 examples)
-clj꞉your-own-detective.core꞉> 
-clj꞉your-own-detective.core-test꞉> 
-values-examples-2
-clj꞉your-own-detective.core꞉> 
-(def values-examples(vals examples))
-clj꞉your-own-detective.core꞉> 
-values-examples
-clj꞉your-own-detective.core꞉> 
-(def values-examples-2(apply concat values-examples))
-clj꞉your-own-detective.core꞉> 
-values-examples-2
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 5 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 5 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 5 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 3 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 1 examples)
-clj꞉your-own-detective.core꞉> 
-(get-evidence-up-to-chapter 10 examples)
-clj꞉your-own-detective.core꞉> 
-clj꞉your-own-detective.core-test꞉> 
-values-examples
-clj꞉your-own-detective.core꞉> 
-values-examples-vec
-clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction examples )
-clj꞉your-own-detective.core꞉> 
 (get-evidence-by-type :contradiction examples)
 clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction examples)
+(= (#(loop [niz '() prvi %1]
+       (if (= (first niz) %2)
+         (drop 1 (reverse niz))
+         (recur (conj niz prvi) (inc prvi)))) 1 4) '(1 2 3))
 clj꞉your-own-detective.core꞉> 
-(get-evidence-by-type :contradiction examples)
+(#(loop [niz '() prvi %1]
+      (if (= (first niz) %2)
+        (drop 1 (reverse niz))
+        (recur (conj niz prvi) (inc prvi)))) 1 4)
 clj꞉your-own-detective.core꞉> 
-clj꞉your-own-detective.core-test꞉> 
+(#(loop [niz '() prvi %1]
+      (if (= (first niz) %2)
+         (take (- (count niz) 1)(reverse niz))
+        (recur (conj niz prvi) (inc prvi)))) 1 4)
+clj꞉your-own-detective.core꞉> 
+(= (
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks)
+     (recur (if (> (first ostali) maks) (first ostali)) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= (
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks)
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(
+(fn [& args]
+(loop [maks (first args) ostali (rest args)]
+  (if (empty? ostali)
+    maks
+  (recur (if (> (first ostali) maks) (first ostali)) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(
+(fn [& args]
+(loop [maks (first args) ostali (rest args)]
+  (if (empty? ostali)
+    maks
+  (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(
+(fn [& args]
+(loop [maks (first args) ostali (rest args)]
+  (if (empty? ostali)
+    maks
+  (recur (if (> (first ostali) maks) (first ostali)) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= (
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali)) (rest ostali)))) 45 67 11) 67))
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali)) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= 
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali)))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(= (
+ (fn [& args]
+   (loop [maks (first args) ostali (rest args)]
+     (if (empty? ostali)
+       maks
+     (recur (if (> (first ostali) maks) (first ostali) maks) (rest ostali))))) 45 67 11) 67)
+clj꞉your-own-detective.core꞉> 
+(slurp "[https://www.gutenberg.org/cache/epub/69087/pg69087.txt]
+        (https://www.gutenberg.org/cache/epub/69087/pg69087.txt)")
+clj꞉your-own-detective.core꞉> 
+(slurp "https://www.gutenberg.org/cache/epub/69087/pg69087.txt")
+clj꞉your-own-detective.core꞉> 
+(def tekst (slurp "https://www.gutenberg.org/cache/epub/69087/pg69087.txt"))
+clj꞉your-own-detective.core꞉> 
+(count tekst)
+clj꞉your-own-detective.core꞉> 
+(subs tekst 0 500)
+clj꞉your-own-detective.core꞉> 
+(subs tekst 0 5000)
+clj꞉your-own-detective.core꞉> 
+(def client (java.net.http.HttpClient/newHttpClient))
+clj꞉your-own-detective.core꞉> 
+(def uri (java.net.URI/create "http://localhost:11434/api/chat"))
+clj꞉your-own-detective.core꞉> 
+(def client (java.net.http.HttpClient/newHttpClient))
+clj꞉your-own-detective.core꞉> 
+(def uri (java.net.URI/create "http://localhost:11434/api/chat"))
+clj꞉your-own-detective.core꞉> 
+(def prompt (str "You are an expert in searching for clues and evidence in thriller books."
+                 "I will give you a chapter of a book and you should analyze it carefully and look for evidence"
+                 "You should return the data in a specific format (use the following examples)"
+                 "Example 1:"
+                 "{
+                     :chapter 1                      
+                     :suspect "" Marc ""                 
+                     :evidence-type :alibi   
+                     :description "" Marc said he was reading at home at the time of the murder"" 
+                     :confidence-score 0.85    
+                  }"
+                 "Example 2:"
+                 "{
+                      :chapter 2                      
+                      :suspect "" Anna ""                 
+                      :evidence-type :motive   
+                      :description " "Anna had a fight with the victim."" 
+                      :confidence-score 1    
+                  }"
+                 
+
+                 "Example 3:"
+                  "{
+                      :chapter 5                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :contradiction   
+                      :description "" Marc's brother said he wasn't home at the time of murder."" 
+                      :confidence-score 0.9    
+                  }"
+                 "Example 4:"
+                 "{
+                      :chapter 9                      
+                      :suspect " " Tina " "                 
+                      :evidence-type :forensic   
+                      :description " " Tina's fingerprints were found in the victim's car" " 
+                      :confidence-score 0.95    
+                                   }"
+                 
+                 "Example 5:"
+                 "{
+                      :chapter 25                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :behaviour   
+                      :description "" Marc was feeling extremly nervous when talking to the police, he was shaking and stuttering."" 
+                      :confidence-score 0.55    
+                                   }"
+                "Example 6:"
+                "{
+                                      :chapter 25                      
+                                      :suspect "" Tina ""                 
+                                      :evidence-type  :means   
+                                      :description  ""The murder weapon was found in Tinas car" " 
+                                      :confidence-score 0.9  
+                                                   }"
+                                   
+                  "Evidence types are: alibi, motive, contradiction, forensic, means, behaviour. If you think you can classify some evidence into another group that makes sense, add it to the list."
+                  "If you are not sure how to classify evidence, the evidence type should then be ""other""."
+                                   ))
+clj꞉your-own-detective.core꞉> 
+(def request-body
+  (str "{\"model\": \"gemma3\", \"stream\": false, \"messages\": [{\"role\": \"user\", \"content\": \""
+       (-> prompt
+           (clojure.string/replace "\\" "\\\\")
+           (clojure.string/replace "\"" "\\\"")
+           (clojure.string/replace "\n" " ")
+           (clojure.string/replace "\r" ""))
+       "\"}]}"))
+clj꞉your-own-detective.core꞉> 
+(def my-requst
+  (-> (HttpRequest/newBuilder)
+      (.uri uri)
+      (.header "Content-Type" "application/json")
+      (.POST (BodyPublishers/ofString request-body))
+      (.build)))
+clj꞉your-own-detective.core꞉> 
+(def my-requst
+  (-> (HttpRequest/newBuilder)
+      (.uri uri)
+      (.header "Content-Type" "application/json")
+      (.POST (java.net.http.HttpRequest$BodyPublishers/ofString request-body))
+      (.build)))
+clj꞉your-own-detective.core꞉> 
+(def my-requst
+  (-> (java.net.http.HttpRequest/newBuilder)
+      (.uri uri)
+      (.header "Content-Type" "application/json")
+      (.POST (java.net.http.HttpRequest$BodyPublishers/ofString request-body))
+      (.build)))
+clj꞉your-own-detective.core꞉> 
+(def response
+  (.send client my-requst (java.net.http.HttpResponse$BodyHandlers/ofString)))
+clj꞉your-own-detective.core꞉> 
+(def prompt (str "You are an expert in searching for clues and evidence in thriller books."
+                 "I will give you a chapter of a book and you should analyze it carefully and look for evidence"
+                 "You should return the data in a specific format (use the following examples)"
+                 "Example 1:"
+                 "{
+                     :chapter 1                      
+                     :suspect "" Marc ""                 
+                     :evidence-type :alibi   
+                     :description "" Marc said he was reading at home at the time of the murder"" 
+                     :confidence-score 0.85    
+                  }"
+                 "Example 2:"
+                 "{
+                      :chapter 2                      
+                      :suspect "" Anna ""                 
+                      :evidence-type :motive   
+                      :description " "Anna had a fight with the victim."" 
+                      :confidence-score 1    
+                  }"
+                 
+
+                 "Example 3:"
+                  "{
+                      :chapter 5                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :contradiction   
+                      :description "" Marc's brother said he wasn't home at the time of murder."" 
+                      :confidence-score 0.9    
+                  }"
+                 "Example 4:"
+                 "{
+                      :chapter 9                      
+                      :suspect " " Tina " "                 
+                      :evidence-type :forensic   
+                      :description " " Tina's fingerprints were found in the victim's car" " 
+                      :confidence-score 0.95    
+                                   }"
+                 
+                 "Example 5:"
+                 "{
+                      :chapter 25                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :behaviour   
+                      :description "" Marc was feeling extremly nervous when talking to the police, he was shaking and stuttering."" 
+                      :confidence-score 0.55    
+                                   }"
+                "Example 6:"
+                "{
+                                      :chapter 25                      
+                                      :suspect "" Tina ""                 
+                                      :evidence-type  :means   
+                                      :description  ""The murder weapon was found in Tinas car" " 
+                                      :confidence-score 0.9  
+                                                   }"
+                                   
+                  "Evidence types are: alibi, motive, contradiction, forensic, means, behaviour. If you think you can classify some evidence into another group that makes sense, add it to the list."
+                  "If you are not sure how to classify evidence, the evidence type should then be ""other""."
+                  "Here's the text:" (subs text 0 10000) ))
+clj꞉your-own-detective.core꞉> 
+(def text (slurp "https://www.gutenberg.org/cache/epub/69087/pg69087.txt"))
+clj꞉your-own-detective.core꞉> 
+(def prompt (str "You are an expert in searching for clues and evidence in thriller books."
+                 "I will give you a chapter of a book and you should analyze it carefully and look for evidence"
+                 "You should return the data in a specific format (use the following examples)"
+                 "Example 1:"
+                 "{
+                     :chapter 1                      
+                     :suspect "" Marc ""                 
+                     :evidence-type :alibi   
+                     :description "" Marc said he was reading at home at the time of the murder"" 
+                     :confidence-score 0.85    
+                  }"
+                 "Example 2:"
+                 "{
+                      :chapter 2                      
+                      :suspect "" Anna ""                 
+                      :evidence-type :motive   
+                      :description " "Anna had a fight with the victim."" 
+                      :confidence-score 1    
+                  }"
+                 
+
+                 "Example 3:"
+                  "{
+                      :chapter 5                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :contradiction   
+                      :description "" Marc's brother said he wasn't home at the time of murder."" 
+                      :confidence-score 0.9    
+                  }"
+                 "Example 4:"
+                 "{
+                      :chapter 9                      
+                      :suspect " " Tina " "                 
+                      :evidence-type :forensic   
+                      :description " " Tina's fingerprints were found in the victim's car" " 
+                      :confidence-score 0.95    
+                                   }"
+                 
+                 "Example 5:"
+                 "{
+                      :chapter 25                      
+                      :suspect "" Marc ""                 
+                      :evidence-type :behaviour   
+                      :description "" Marc was feeling extremly nervous when talking to the police, he was shaking and stuttering."" 
+                      :confidence-score 0.55    
+                                   }"
+                "Example 6:"
+                "{
+                                      :chapter 25                      
+                                      :suspect "" Tina ""                 
+                                      :evidence-type  :means   
+                                      :description  ""The murder weapon was found in Tinas car" " 
+                                      :confidence-score 0.9  
+                                                   }"
+                                   
+                  "Evidence types are: alibi, motive, contradiction, forensic, means, behaviour. If you think you can classify some evidence into another group that makes sense, add it to the list."
+                  "If you are not sure how to classify evidence, the evidence type should then be ""other""."
+                  "Here's the text:" (subs text 0 10000) ))
+clj꞉your-own-detective.core꞉> 
+(def response
+  (.send client my-requst (java.net.http.HttpResponse$BodyHandlers/ofString)))
+clj꞉your-own-detective.core꞉> 
+(.body response)
+clj꞉your-own-detective.core꞉> 
+(.body response)
+clj꞉your-own-detective.core꞉> 
+(.body response)
+(def request-body
+  (str "{\"model\": \"gemma3:latest\", \"stream\": false, \"messages\": [{\"role\": \"user\", \"content\": \""
+       (-> prompt
+           (clojure.string/replace "\\" "\\\\")
+           (clojure.string/replace "\"" "\\\"")
+           (clojure.string/replace "\n" " ")
+           (clojure.string/replace "\r" ""))
+       "\"}]}"))
+(def my-requst
+  (-> (java.net.http.HttpRequest/newBuilder)
+      (.uri uri)
+      (.header "Content-Type" "application/json")
+      (.POST (java.net.http.HttpRequest$BodyPublishers/ofString request-body))
+      (.build)))
+(def response
+  (.send client my-requst (java.net.http.HttpResponse$BodyHandlers/ofString)))
+(.body response)
+(get examples 1)
+clj꞉your-own-detective.core꞉> 
