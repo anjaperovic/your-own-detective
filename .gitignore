@@ -11,3 +11,5 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
+/models
+/resources/agatha-christie_the-mystery-of-the-blue-train.epub

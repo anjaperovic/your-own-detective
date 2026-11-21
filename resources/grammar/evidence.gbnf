@@ -1,0 +1,37 @@
+# Useful for generating JSON arrays
+# This is the same as json.gbnf but we restrict whitespaces at the end of the root array
+root   ::= arr
+value  ::= object | array | string | number | ("true" | "false" | "null") ws | evtype
+
+arr  ::=
+  "[\n" ws (
+            value
+    (",\n" ws value)*
+  )? "]"
+
+object ::=
+  "{" ws (
+            "\""suspect"\"" ":" ws string "," ws
+            "\""evidence-type"\"" ":" ws evtype "," ws
+            "\""description"\"" ":" ws string "," ws
+            "\""confidence-score"\"" ":" ws number ws
+            
+  )? "}" ws
+
+array  ::=
+  "[" ws (
+            value
+    ("," ws value)*
+  )? "]" ws
+
+string ::=
+  "\"" (
+    [^"\\\x7F\x00-\x1F] |
+    "\\" (["\\bfnrt] | "u" [0-9a-fA-F]{4}) # escapes
+  )* "\"" ws
+
+number ::= 0 "."[0-9]?[0-9]? ws | 1 ws
+
+ws ::= | " " | "\n" [ \t]{0,20}
+
+evtype ::= alibi | motive | contradiction | forensic | means | behaviour | other
