@@ -9,16 +9,14 @@
   (import de.kherud.llama.InferenceParameters)
   (de.kherud.llama.ModelParameters.)
   (def params (-> (ModelParameters.) (.setModel "models/gemma-3-1b-it-Q4_K_M.gguf")))
-
+  
+  
 
   (def prompt-text (str "<start_of_turn>user" "\n" (slurp "resources/my-prompt.txt") (slurp "resources/chapter-1.txt") "<end_of_turn>" "\n" "<start_of_turn>model" "\n" ))
   (with-open [model (de.kherud.llama.LlamaModel. params)]
-    (let [my-prompt (-> (de.kherud.llama.InferenceParameters. prompt-text) (.setNPredict 1000))]
+    (let [my-prompt (-> (de.kherud.llama.InferenceParameters. prompt-text) (.setNPredict 1000) (.setGrammar (slurp "resources/grammar/evidence.gbnf")))]
 
       (.complete model my-prompt)))
-
-
-
 
 
   )

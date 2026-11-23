@@ -874,3 +874,274 @@ clj꞉your-own-detective.llm꞉> 
 
     (.complete model my-prompt)))
 clj꞉your-own-detective.llm꞉> 
+(de.kherud.llama.ModelParameters.)
+clj꞉your-own-detective.llm꞉> 
+(with-open [model (de.kherud.llama.LlamaModel. params)]
+  (let [my-prompt (-> (de.kherud.llama.InferenceParameters. prompt-text) (.setNPredict 1000) (.setGrammar (slurp "resources/grammar/evidence.gbnf")))]
+
+    (.complete model my-prompt)))
+clj꞉your-own-detective.llm꞉> 
+(when-let [requires (resolve 'clojure.main/repl-requires)] (clojure.core/apply clojure.core/require @requires))
+clj꞉your-own-detective.core꞉> 
+comment
+clj꞉your-own-detective.llm꞉> 
+(import de.kherud.llama.LlamaModel)
+clj꞉your-own-detective.llm꞉> 
+(import de.kherud.llama.ModelParameters)
+clj꞉your-own-detective.llm꞉> 
+(import de.kherud.llama.InferenceParameters)
+clj꞉your-own-detective.llm꞉> 
+(de.kherud.llama.ModelParameters.)
+clj꞉your-own-detective.llm꞉> 
+(def params (-> (ModelParameters.) (.setModel "models/gemma-3-1b-it-Q4_K_M.gguf")))
+clj꞉your-own-detective.llm꞉> 
+(def prompt-text (str "<start_of_turn>user" "\n" (slurp "resources/my-prompt.txt") (slurp "resources/chapter-1.txt") "<end_of_turn>" "\n" "<start_of_turn>model" "\n" ))
+clj꞉your-own-detective.llm꞉> 
+(with-open [model (de.kherud.llama.LlamaModel. params)]
+  (let [my-prompt (-> (de.kherud.llama.InferenceParameters. prompt-text) (.setNPredict 1000) (.setGrammar (slurp "resources/grammar/evidence.gbnf")))]
+
+    (.complete model my-prompt)))
+clj꞉your-own-detective.llm꞉> 
+(with-open [model (de.kherud.llama.LlamaModel. params)]
+  (let [my-prompt (-> (de.kherud.llama.InferenceParameters. prompt-text) (.setNPredict 1000) (.setGrammar (slurp "resources/grammar/evidence.gbnf")))]
+
+    (.complete model my-prompt)))
+clj꞉your-own-detective.llm꞉> 
+(ns your-own-detective.evidence
+  (:require [cheshire.core :refer :all]))
+clj꞉your-own-detective.evidence꞉> 
+(defproject your-own-detective "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :url "https://example.com/FIXME"
+  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
+            :url "https://www.eclipse.org/legal/epl-2.0/"}
+  :dependencies [[org.clojure/clojure "1.12.2"]
+                 [midje "1.9.9"]
+                 [de.kherud/llama "4.2.0"]
+                 [cheshire "6.2.1"]]
+  
+  
+  :plugins [[lein-midje "3.2.2"]]
+  :main ^:skip-aot your-own-detective.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+
+  )
+clj꞉user꞉> 
+(defproject your-own-detective "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :url "https://example.com/FIXME"
+  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
+            :url "https://www.eclipse.org/legal/epl-2.0/"}
+  :dependencies [[org.clojure/clojure "1.12.2"]
+                 [midje "1.9.9"]
+                 [de.kherud/llama "4.2.0"]
+                 [cheshire "6.2.1"]]
+  
+  
+  :plugins [[lein-midje "3.2.2"]]
+  :main ^:skip-aot your-own-detective.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+
+  )
+clj꞉user꞉> 
+clj꞉your-own-detective.evidence꞉> 
+(when-let [requires (resolve 'clojure.main/repl-requires)] (clojure.core/apply clojure.core/require @requires))
+clj꞉your-own-detective.core꞉> 
+clj꞉your-own-detective.evidence꞉> 
+(def examples
+  [{:chapter 1
+    :suspect "Marc"
+    :evidence-type :alibi
+    :description "Marc says he has been home at the time of murder."
+    :confidence-score 0.7}
+
+   {:chapter 2
+    :suspect "Anna"
+    :evidence-type :motive
+    :description "Anna had a fight with the victim."
+    :confidence-score 0.6}
+
+   {:chapter 2
+    :suspect "Marc"
+    :evidence-type :contradiction
+    :description "Marc's brother said he wasn't home."
+    :confidence-score 0.8}
+
+   {:chapter 4
+    :suspect "Ellen"
+    :evidence-type :contradiction
+    :description "A love letter addressed to the victim was found with her signature on it. "
+    :confidence-score 0.55 }
+   
+   {:chapter 5
+    :suspect "Peter"
+    :evidence-type :alibi
+    :description "Peter was working the night of the murder."
+    :confidence-score 0.89}])
+clj꞉your-own-detective.evidence꞉> 
+(get examples 1)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 2 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 3 examples)
+clj꞉your-own-detective.evidence꞉> 
+(defn get-evidence-by-chapter [n db] (filter #(= n (:chapter %)) db) )
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 1 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 2 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 3 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-chapter 4 examples)
+clj꞉your-own-detective.evidence꞉> 
+(fact  "proba" (+ 1 1) => 2)
+clj꞉your-own-detective.core-test꞉> 
+(fact "get-evidence-by-chapter returns all evidence in a certain chapter"
+      (get-evidence-by-chapter 2 examples) => (get examples 2))
+clj꞉your-own-detective.core-test꞉> 
+(fact "get-evidence-by-chapter returns all evidence in a certain chapter"
+      (get-evidence-by-chapter 2 examples) => contains [{:chapter 2
+                                                         :suspect "Anna"
+                                                         :evidence-type :motive
+                                                         :description "Anna had a fight with the victim."
+                                                         :confidence-score 0.6}
+                                                        
+                                                        {:chapter 2
+                                                         :suspect "Marc"
+                                                         :evidence-type :contradiction
+                                                         :description "Marc's brother said he wasn't home."
+                                                         :confidence-score 0.8}])
+clj꞉your-own-detective.core-test꞉> 
+(get-evidence-by-chapter 6  examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 5 examples)
+clj꞉your-own-detective.evidence꞉> 
+(defn get-evidence-up-to-chapter [n db] (filter #(<= (:chapter %) n) db))
+clj꞉your-own-detective.evidence꞉> 
+(defn get-evidence-up-to-chapter [n db] (filter #(<= (:chapter %) n) db))
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 5 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 3 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 10 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 0 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter -3 examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-up-to-chapter 0 examples)
+clj꞉your-own-detective.evidence꞉> 
+(fact "get-evidence-up-to-chapter returns all evidence in a certain chapter and in the chapters preceding it"
+      (get-evidence-up-to-chapter 5 examples) => (contains [{:suspect "Marc"
+                                                             :evidence-type :alibi
+                                                             :description "Marc says he has been home at the time of murder."}
+                                                            {:suspect "Anna"
+                                                             :evidence-type :motive
+                                                             :description "Anna had a fight with the victim."}
+
+                                                            {:suspect "Marc"
+                                                             :evidence-type :contradiction
+                                                             :description "Marc's brother said he wasn't home."}
+                                                            {:suspect "Ellen"
+                                                             :evidence-type :contradiction
+                                                             :description "A love letter addressed to the victim was found with her signature on it. "}
+                                                            {:suspect "Peter"
+                                                             :evidence-type :alibi
+                                                             :description "Peter was working the night of the murder."}]))
+clj꞉your-own-detective.core-test꞉> 
+(fact "get-evidence-up-to-chapter returns all evidence in a certain chapter and in the chapters preceding it"
+      (get-evidence-up-to-chapter 5 examples) => (contains [{:chapter 1
+                                                             :suspect "Marc"
+                                                             :evidence-type :alibi
+                                                             :description "Marc says he has been home at the time of murder."
+                                                             :confidence-score 0.7}
+                                                            
+                                                            {:chapter 2
+                                                             :suspect "Anna"
+                                                             :evidence-type :motive
+                                                             :description "Anna had a fight with the victim."
+                                                             :confidence-score 0.6}
+                                                            
+                                                            {:chapter 2
+                                                             :suspect "Marc"
+                                                             :evidence-type :contradiction
+                                                             :description "Marc's brother said he wasn't home."
+                                                             :confidence-score 0.8}
+                                                            
+                                                            {:chapter 4
+                                                             :suspect "Ellen"
+                                                             :evidence-type :contradiction
+                                                             :description "A love letter addressed to the victim was found with her signature on it. "
+                                                             :confidence-score 0.55}
+                                                            
+                                                            {:chapter 5
+                                                             :suspect "Peter"
+                                                             :evidence-type :alibi
+                                                             :description "Peter was working the night of the murder."
+                                                             :confidence-score 0.89}]))
+clj꞉your-own-detective.core-test꞉> 
+(defn get-evidence-by-type [type db]
+  (filter #(= (:evidence-type %) type) db))
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-type :contradiction examples)
+clj꞉your-own-detective.evidence꞉> 
+(fact "get-evidence-by-type returns all evidence with a given type"
+      (get-evidence-by-type :alibi examples) => (contains [{:chapter 1
+                                                            :suspect "Marc"
+                                                            :evidence-type :alibi
+                                                            :description "Marc says he has been home at the time of murder."
+                                                            :confidence-score 0.7}
+                                                           {:chapter 5
+                                                            :suspect "Peter"
+                                                            :evidence-type :alibi
+                                                            :description "Peter was working the night of the murder."
+                                                            :confidence-score 0.89}]))
+clj꞉your-own-detective.core-test꞉> 
+(defn get-evidence-by-character [character db]
+  (filter #(= (:character %) character) db))
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-character "Marc" examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-suspect "Marc" examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-suspect Marc examples)
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-suspect "Marc" examples)
+clj꞉your-own-detective.evidence꞉> 
+(defn get-evidence-by-suspect [suspect db]
+  (filter #(= (:suspect %) suspect) db))
+clj꞉your-own-detective.evidence꞉> 
+(get-evidence-by-suspect "Marc" examples)
+clj꞉your-own-detective.evidence꞉> 
+(fact "get-evidence-by-suspect returns all evidence concerning the given suspect"
+      (get-evidence-by-suspect "Marc" examples)=> (contains [{:chapter 1
+                                                              :suspect "Marc"
+                                                              :evidence-type :alibi
+                                                              :description "Marc says he has been home at the time of murder."
+                                                              :confidence-score 0.7}
+                                                              {:chapter 2
+                                                              :suspect "Marc"
+                                                              :evidence-type :contradiction
+                                                              :description "Marc's brother said he wasn't home."
+                                                              :confidence-score 0.8}
+                                                            
+                                                             ]))
+clj꞉your-own-detective.core-test꞉> 
+(fact "get-evidence-by-suspect returns all evidence concerning the given suspect"
+      (get-evidence-by-suspect "Anna" examples) => (contains [{:chapter 1
+                                                               :suspect "Marc"
+                                                               :evidence-type :alibi
+                                                               :description "Marc says he has been home at the time of murder."
+                                                               :confidence-score 0.7}
+                                                              {:chapter 2
+                                                               :suspect "Marc"
+                                                               :evidence-type :contradiction
+                                                               :description "Marc's brother said he wasn't home."
+                                                               :confidence-score 0.8}]))
+clj꞉your-own-detective.core-test꞉> 

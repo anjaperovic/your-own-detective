@@ -10,17 +10,17 @@ arr  ::=
 
 object ::=
   "{" ws (
-            "\""suspect"\"" ":" ws string "," ws
-            "\""evidence-type"\"" ":" ws evtype "," ws
-            "\""description"\"" ":" ws string "," ws
-            "\""confidence-score"\"" ":" ws number ws
+            "\"suspect\"" ":" ws string "," ws
+            "\"evidence-type\"" ":" ws evtype "," ws
+            "\"description\"" ":" ws string "," ws
+            "\"confidence-score\"" ":" ws number ws
             
-  )? "}" ws
+  ) "}" ws
 
 array  ::=
   "[" ws (
-            value
-    ("," ws value)*
+            object
+    ("," ws object)*
   )? "]" ws
 
 string ::=
@@ -29,8 +29,8 @@ string ::=
     "\\" (["\\bfnrt] | "u" [0-9a-fA-F]{4}) # escapes
   )* "\"" ws
 
-number ::= 0 "."[0-9]?[0-9]? ws | 1 ws
+number ::= "0" "."?[0-9]?[0-9]? ws | "1" [(.0 | .00)]? ws
 
 ws ::= | " " | "\n" [ \t]{0,20}
 
-evtype ::= alibi | motive | contradiction | forensic | means | behaviour | other
+evtype ::= "alibi" | "motive" | "contradiction" | "forensic" | "means" | "behaviour" | "other"

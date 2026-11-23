@@ -1,65 +1,67 @@
-(ns your-own-detective.evidence)
+(ns your-own-detective.evidence
+  (:require [cheshire.core :refer :all]))
 
 (def examples
-  {1 [{:suspect "Marc"
-       :evidence-type :alibi
-       :description "Marc says he has been home at the time of murder."}]
+  [{:chapter 1
+    :suspect "Marc"
+    :evidence-type :alibi
+    :description "Marc says he has been home at the time of murder."
+    :confidence-score 0.7}
 
-   2 [{:suspect "Anna"
-       :evidence-type :motive
-       :description "Anna had a fight with the victim."}
+   {:chapter 2
+    :suspect "Anna"
+    :evidence-type :motive
+    :description "Anna had a fight with the victim."
+    :confidence-score 0.6}
 
-      {:suspect "Marc"
-       :evidence-type :contradiction
-       :description "Marc's brother said he wasn't home."}]
+   {:chapter 2
+    :suspect "Marc"
+    :evidence-type :contradiction
+    :description "Marc's brother said he wasn't home."
+    :confidence-score 0.8}
 
-   4 [{:suspect "Ellen"
-       :evidence-type :contradiction
-       :description "A love letter addressed to the victim was found with her signature on it. "}]
-   5 [{:suspect "Peter"
-       :evidence-type :alibi
-       :description "Peter was working the night of the murder."}]})
+   {:chapter 4
+    :suspect "Ellen"
+    :evidence-type :contradiction
+    :description "A love letter addressed to the victim was found with her signature on it. "
+    :confidence-score 0.55 }
+   
+   {:chapter 5
+    :suspect "Peter"
+    :evidence-type :alibi
+    :description "Peter was working the night of the murder."
+    :confidence-score 0.89}])
 
 
 ;; vadi sve dokaze za odredjeno poglavlje
-(get examples 1)
-(get examples 2)
-(defn get-evidence-by-chapter [n db] (get db n))
-(get-evidence-by-chapter 3 examples)
-(get-evidence-by-chapter 2 examples)
-;;radi
+
+
+(defn get-evidence-by-chapter [n db] (filter #(= n (:chapter %)) db) )
+
+(get-evidence-by-chapter 6  examples)
 
 
 ;; vadi sve dokaze do odredjenog poglavlja
-(defn get-evidence-up-to-chapter [n db] (loop [iteration 1 final-evidence []]
-                                          (if (> iteration n)
-                                            final-evidence
-                                            (recur (inc iteration)
-                                                   (into final-evidence (get-evidence-by-chapter iteration db))))))
+
+(defn get-evidence-up-to-chapter [n db] (filter #(<= (:chapter %) n) db))
 (get-evidence-up-to-chapter 5 examples)
 (get-evidence-up-to-chapter 3 examples)
-(get-evidence-up-to-chapter 10 examples)
-;;radi
+(get-evidence-up-to-chapter 0 examples)
 
-
-
-(filter #(= (:evidence-type %) :contradiction) examples) ;;prazno
-
-(def values-examples-vec (vals examples))
-values-examples-vec
-(filter #(= (:evidence-type %) :contradiction) values-examples-vec)
-;;nije se uhvatio nijedan
-
-(def values-examples (apply concat values-examples-vec))
-values-examples
-;;svi 
 
 ;;vadi sve dokaze za odredjeni tip
 (defn get-evidence-by-type [type db]
-  (filter #(= (:evidence-type %) type) (apply concat (vals db))))
+  (filter #(= (:evidence-type %) type) db))
 
-(get-evidence-by-type :contradiction examples)
-;;radi
+;sve dokaze za odredjenog lika
 
+(defn get-evidence-by-suspect [suspect db]
+  (filter #(= (:suspect %) suspect) db))
+(get-evidence-by-suspect "Marc" examples)
 
 (def start-of-book ()) ;napravi da pocinje od pocetka bez onog uvodnog dela i sadrzaja
+
+;funkcija za pretvaranje jednog jsona u mapu + dodavanje chaptera u tu mapu (znaci prima output za odredjeno poglavlje i broj poglavlja)
+; izvalcenje svakog objekta pa nad njim fja parse-string v
+
+;prepravi trenutne primere, funkcije i testove
