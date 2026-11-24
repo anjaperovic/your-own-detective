@@ -7,7 +7,7 @@
                  [midje "1.9.9"]
                  [de.kherud/llama "4.2.0"]
                  [cheshire "6.2.1"]]
-  
+                 
   
   :plugins [[lein-midje "3.2.2"]]
   :main ^:skip-aot your-own-detective.core

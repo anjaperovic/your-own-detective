@@ -1,11 +1,11 @@
 
 root   ::= arr
-value  ::= object | array | string | number | ("true" | "false" | "null") ws | evtype
+
 
 arr  ::=
   "[\n" ws (
-            value
-    (",\n" ws value)*
+            object
+    (",\n" ws object)*
   )? "]"
 
 object ::=
@@ -17,11 +17,7 @@ object ::=
             
   ) "}" ws
 
-array  ::=
-  "[" ws (
-            object
-    ("," ws object)*
-  )? "]" ws
+
 
 string ::=
   "\"" (
@@ -29,7 +25,7 @@ string ::=
     "\\" (["\\bfnrt] | "u" [0-9a-fA-F]{4}) # escapes
   )* "\"" ws
 
-number ::= "0" "."?[0-9]?[0-9]? ws | "1" [(.0 | .00)]? ws
+number ::= "0" ws | "0"("."[0-9][0-9]?) ws | "1" (".0" | ".00")? ws
 
 ws ::= | " " | "\n" [ \t]{0,20}
 

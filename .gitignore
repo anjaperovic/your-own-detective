@@ -13,3 +13,4 @@ pom.xml.asc
 .hg/
 /models
 /resources/agatha-christie_the-mystery-of-the-blue-train.epub
+/books

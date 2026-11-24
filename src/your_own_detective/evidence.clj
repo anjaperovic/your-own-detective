@@ -60,8 +60,26 @@
 (get-evidence-by-suspect "Marc" examples)
 
 (def start-of-book ()) ;napravi da pocinje od pocetka bez onog uvodnog dela i sadrzaja
-
+(def separate-chapters())
 ;funkcija za pretvaranje jednog jsona u mapu + dodavanje chaptera u tu mapu (znaci prima output za odredjeno poglavlje i broj poglavlja)
-; izvalcenje svakog objekta pa nad njim fja parse-string v
+; izvalcenje svakog objekta pa nad njim fja parse-string + i tip dokaza mora da bude keyword
 
-;prepravi trenutne primere, funkcije i testove
+;; parse some json and get keywords back
+
+(defn json-to-map [db]
+ (parse-string (generate-string db) true) )
+(json-to-map examples)
+
+
+; deljenje predugackog poglavja
+; racunanje broja tokena poglavlja
+;funkcija koja prolazi kroz sve dokaze i trazi dva koja su kontradikotrna pa tom drugom dodeli tip contradiction a prvom smanji tezinu
+; cuvanje dokaza
+; citanje dokaza
+; racunjanje tezine dokaza
+; izracunavanje verovatnoce da je osumnjiceni i pocinitelj
+; fja koja smanjuje tezinu dokaza (odvojeno?)
+; najuticajniji dokazi koji govore u prilog da je osumnjiceni i pocinitelj
+
+;probaj sa vecim modelom
+;napisi readme (user storiji, uputstvo za knjigu)

@@ -84,3 +84,29 @@
                                                                :evidence-type :contradiction
                                                                :description "Marc's brother said he wasn't home."
                                                                :confidence-score 0.8}]))
+(fact "json-to-map makes a list of jsons into list of maps"
+      (json-to-map examples)=> (contains [{:chapter 1,
+                                           :confidence-score 0.7,
+                                           :description "Marc says he has been home at the time of murder.",
+                                           :evidence-type "alibi",
+                                           :suspect "Marc"}
+                                          {:chapter 2,
+                                           :confidence-score 0.6,
+                                           :description "Anna had a fight with the victim.",
+                                           :evidence-type "motive",
+                                           :suspect "Anna"}
+                                          {:chapter 2,
+                                           :confidence-score 0.8,
+                                           :description "Marc's brother said he wasn't home.",
+                                           :evidence-type "contradiction",
+                                           :suspect "Marc"}
+                                          {:chapter 4,
+                                           :confidence-score 0.55,
+                                           :description "A love letter addressed to the victim was found with her signature on it. ",
+                                           :evidence-type "contradiction",
+                                           :suspect "Ellen"}
+                                          {:chapter 5,
+                                           :confidence-score 0.89,
+                                           :description "Peter was working the night of the murder.",
+                                           :evidence-type "alibi",
+                                           :suspect "Peter"}])) 
